@@ -1,6 +1,7 @@
 package guo.edwin.wisdomapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
@@ -13,16 +14,14 @@ import android.widget.RelativeLayout;
 public class SplashActivity extends Activity {
 
     RelativeLayout rl_splash_root;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         rl_splash_root = (RelativeLayout) findViewById(R.id.rl_splash_root);
         startAnim();
     }
-
-
-
 
     private void startAnim() {
 
@@ -43,6 +42,24 @@ public class SplashActivity extends Activity {
         as.addAnimation(rotate);
         as.addAnimation(scale);
         as.addAnimation(al);
+
+        as.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Intent toGuide = new Intent(SplashActivity.this, GuideActivity.class);
+                startActivity(toGuide);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         rl_splash_root.startAnimation(as);
 
