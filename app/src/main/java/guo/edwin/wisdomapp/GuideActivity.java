@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -27,23 +29,43 @@ public class GuideActivity extends Activity {
     // image view to hold to image
     ArrayList<ImageView> guideImgViews = new ArrayList<ImageView>();
 
+    // linear layout for the grey/red points
+    LinearLayout guide_ll;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.acitivity_guide);
         guideVP = (ViewPager) findViewById(R.id.guide_vp);
+        guide_ll = (LinearLayout) findViewById(R.id.guide_ll_btn_group);
+
         initView();
         guideVP.setAdapter(new GuidePager());
 
     }
 
     public void initView(){
+        // instantinate the images as well as the guide
+        // points
         for(int i=0; i<guideImages.length; i++){
             ImageView guideV = new ImageView(this);
             guideV.setImageResource(guideImages[i]);
             guideImgViews.add(guideV);
+
+            // instantinate the points
+            View greyPointView = new View(this);
+            LinearLayout.LayoutParams guide_llp = new LinearLayout.LayoutParams(38, 38);
+            if(i > 0){
+                guide_llp.leftMargin = 25;
+            }
+            greyPointView.setLayoutParams(guide_llp);
+            greyPointView.setBackgroundResource(R.drawable.guide_grey_point);
+            guide_ll.addView(greyPointView);
         }
+
+        //View guide_red_point = findViewById(R.id.guide_ll_point_red);
+        //guide_red_point.setLayoutParams(new RelativeLayout.LayoutParams(38, 38));
 
     }
 
