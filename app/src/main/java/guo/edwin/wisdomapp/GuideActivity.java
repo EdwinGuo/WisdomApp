@@ -6,6 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +33,11 @@ public class GuideActivity extends Activity {
     // linear layout for the grey/red points
     LinearLayout guide_ll;
 
+    // get the red point
+    View guide_red_point;
+
+    float mPointWidth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +45,12 @@ public class GuideActivity extends Activity {
         setContentView(R.layout.acitivity_guide);
         guideVP = (ViewPager) findViewById(R.id.guide_vp);
         guide_ll = (LinearLayout) findViewById(R.id.guide_ll_btn_group);
+        guide_red_point = (View) findViewById(R.id.guide_ll_point_red);
 
         initView();
         guideVP.setAdapter(new GuidePager());
+
+        guideVP.setOnPageChangeListener(new GuidePageListener());
 
     }
 
@@ -64,10 +73,50 @@ public class GuideActivity extends Activity {
             guide_ll.addView(greyPointView);
         }
 
-        //View guide_red_point = findViewById(R.id.guide_ll_point_red);
-        //guide_red_point.setLayoutParams(new RelativeLayout.LayoutParams(38, 38));
+        // retrieve view tree, set listener for after layout event finish
+        guide_ll.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+
+                    @Override
+                    public void onGlobalLayout() {
+                        System.out.println("layout finish");
+                        guide_ll.getViewTreeObserver()
+                                .removeGlobalOnLayoutListener(this);
+                        mPointWidth = guide_ll.getChildAt(1).getLeft()
+                                - guide_ll.getChildAt(0).getLeft();
+                        System.out.println("point distance:" + mPointWidth);
+                    }
+                });
+    }
+
+    class GuidePageListener implements ViewPager.OnPageChangeListener {
+
+        // scroll event
+        @Override
+        public void onPageScrolled(int position, float positionOffset,
+                                   int positionOffsetPixels) {
+
+            int len = (int) (mPointWidth * positionOffset +  position * mPointWidth);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) guide_red_point
+                    .getLayoutParams();
+            params.leftMargin = len;
+
+            guide_red_point.setLayoutParams(params);
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
 
     }
+
+
+
 
 
     public class GuidePager extends PagerAdapter{
