@@ -1,6 +1,7 @@
 package guo.edwin.wisdomapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -8,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
 import java.util.ArrayList;
-
+import guo.edwin.wisdomapp.Utils.Helper;
 
 /**
  * Created by EdwinGuo on 2016-12-01.
@@ -38,6 +39,9 @@ public class GuideActivity extends Activity {
 
     float mPointWidth;
 
+    // guide button
+    Button guide_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +54,18 @@ public class GuideActivity extends Activity {
         initView();
         guideVP.setAdapter(new GuidePager());
 
+        guide_button = (Button) findViewById(R.id.guide_btn);
         guideVP.setOnPageChangeListener(new GuidePageListener());
+
+        guide_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Helper.updatePreference(GuideActivity.this);
+                System.out.println("What is the preference from guide? " + Helper.jumpToGuide(GuideActivity.this));
+                startActivity(new Intent(GuideActivity.this, MainActivity.class));
+                finish();
+            }
+        });
 
     }
 
@@ -106,6 +121,10 @@ public class GuideActivity extends Activity {
 
         @Override
         public void onPageSelected(int position) {
+            if (position == (guideImages.length - 1)){
+                guide_button.setVisibility(View.VISIBLE);
+            }
+
         }
 
         @Override

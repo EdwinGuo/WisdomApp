@@ -2,7 +2,6 @@ package guo.edwin.wisdomapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -10,6 +9,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
+import guo.edwin.wisdomapp.Utils.Helper;
 
 public class SplashActivity extends Activity {
 
@@ -51,8 +51,13 @@ public class SplashActivity extends Activity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent toGuide = new Intent(SplashActivity.this, GuideActivity.class);
-                startActivity(toGuide);
+                System.out.println("What is the preference? " + Helper.jumpToGuide(SplashActivity.this));
+                if (Helper.jumpToGuide(SplashActivity.this)){
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                } else {
+                    startActivity(new Intent(SplashActivity.this, GuideActivity.class));
+                }
+                finish();
             }
 
             @Override
