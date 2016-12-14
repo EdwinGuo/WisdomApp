@@ -1,9 +1,7 @@
 package guo.edwin.wisdomapp;
 
-import android.app.Activity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -23,6 +21,7 @@ public class MainActivity extends SlidingFragmentActivity {
         setBehindContentView(R.layout.left_menu);
 
         SlidingMenu slidmenu = getSlidingMenu();
+        slidmenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         slidmenu.setBehindOffset(850);
 
         initFragment();
@@ -31,8 +30,8 @@ public class MainActivity extends SlidingFragmentActivity {
     private void initFragment() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.fl_left_menu_main, new ContentFragment(), LEFT_MENU_MAIN_FRAGMENT);
-        transaction.replace(R.id.fl_main, new LeftMenuFragment(), FRAGMENT_CONETNT);
+        transaction.replace(R.id.fl_left_menu_main, new LeftMenuFragment(), LEFT_MENU_MAIN_FRAGMENT);
+        transaction.replace(R.id.fl_main, new ContentFragment(), FRAGMENT_CONETNT);
 
         transaction.commit();
     }

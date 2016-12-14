@@ -3,4 +3,10 @@
 
     <!-- guide -->
     <string name="guide_btn_text">Start Experience</string>
+    <string name="guide_home">Home</string>
+    <string name="guide_news">News</string>
+    <string name="guide_service">Service</string>
+    <string name="guide_Setting">Setting</string>
+
+
 </resources>
