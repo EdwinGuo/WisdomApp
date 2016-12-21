@@ -4,31 +4,38 @@
     android:orientation="vertical">
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/cf_vp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+ />
 
     <RadioGroup
+        android:id="@+id/rg_btm"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
         android:background="@drawable/bottom_tab_bg"
         android:orientation="horizontal"
-        android:layout_weight="0.04">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp">
 
         <RadioButton
             style="@style/BottomTabStyle"
+            android:id="@+id/rb_home"
             android:text="@string/guide_home"
             android:drawableTop="@drawable/home_img_selector" />
         <RadioButton
             style="@style/BottomTabStyle"
+            android:id="@+id/rb_news"
             android:text="@string/guide_news"
             android:drawableTop="@drawable/news_img_selector" />
         <RadioButton
             style="@style/BottomTabStyle"
+            android:id="@+id/rb_service"
             android:text="@string/guide_service"
             android:drawableTop="@drawable/service_img_selector" />
         <RadioButton
             style="@style/BottomTabStyle"
+            android:id="@+id/rb_setting"
             android:text="@string/guide_Setting"
             android:drawableTop="@drawable/setting_img_selector" />
 

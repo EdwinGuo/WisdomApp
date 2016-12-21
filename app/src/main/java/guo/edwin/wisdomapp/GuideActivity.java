@@ -27,7 +27,6 @@ public class GuideActivity extends Activity {
     // image array list to hold all the guide images
     int[] guideImages = new int[]{R.drawable.guide_image_1, R.drawable.guide_image_2,
             R.drawable.guide_image_3};
-
     // image view to hold to image
     ArrayList<ImageView> guideImgViews = new ArrayList<ImageView>();
 
@@ -133,10 +132,6 @@ public class GuideActivity extends Activity {
         }
 
     }
-
-
-
-
 
     public class GuidePager extends PagerAdapter{
 

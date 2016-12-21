@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="guo.edwin.wisdomapp.MainActivity"
+    android:orientation="vertical">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/title_red_bg">
+
+      <ImageButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/img_menu"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="5dp">
+      </ImageButton>
+
+      <TextView
+          android:id="@+id/bp_rl_tv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Wisdom App"
+          android:textColor="#0ff"
+          android:textSize="30sp"
+          android:layout_centerHorizontal="true"
+          android:layout_centerVertical="true"
+          android:textStyle="bold"
+          />
+  </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/base_pager_fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+</LinearLayout>
