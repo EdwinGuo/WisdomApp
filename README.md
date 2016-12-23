@@ -1,2 +1,2 @@
 # WisdomApp
-My learning Android project
+My learning Android project...
