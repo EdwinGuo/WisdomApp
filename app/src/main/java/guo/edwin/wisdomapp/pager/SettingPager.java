@@ -2,6 +2,7 @@ package guo.edwin.wisdomapp.pager;
 
 import android.app.Activity;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ public class SettingPager extends BasePager {
     }
 
     public void updateContents() {
+        System.out.println("LOADING SETTING PAGER.....");
+        basePageib.setVisibility(View.INVISIBLE);
         FrameLayout fl = (FrameLayout) super.rootView.findViewById(R.id.base_pager_fl);
         TextView view = new TextView(super.mActivity);
         view.setText("SETTINGS");

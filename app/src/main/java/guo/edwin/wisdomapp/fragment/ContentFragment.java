@@ -7,8 +7,11 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import java.util.ArrayList;
 
+import guo.edwin.wisdomapp.MainActivity;
 import guo.edwin.wisdomapp.R;
 import guo.edwin.wisdomapp.pager.BasePager;
 import guo.edwin.wisdomapp.pager.HomePager;
@@ -43,7 +46,32 @@ public class ContentFragment extends BaseFragment {
         pagers.add(new SettingPager(mainActivity));
 
         cf_vp.setAdapter(new ContentPager());
-
+        home_btn.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        MainActivity ac = (MainActivity) mainActivity;
+                        switch (checkedId) {
+                            case R.id.rb_home:
+                                cf_vp.setCurrentItem(0, false);
+                                ac.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+                                break;
+                            case R.id.rb_news:
+                                cf_vp.setCurrentItem(1, false);
+                                ac.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+                                break;
+                            case R.id.rb_service:
+                                cf_vp.setCurrentItem(2, false);
+                                ac.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+                                break;
+                            case R.id.rb_setting:
+                                cf_vp.setCurrentItem(3, false);
+                                ac.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+                                break;
+                        }
+                    }
+                }
+        );
     }
 
     class ContentPager extends PagerAdapter {

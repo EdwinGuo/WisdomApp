@@ -16,6 +16,7 @@ public class NewsPager extends BasePager {
     }
 
     public void updateContents() {
+        System.out.println("LOADING NEWS PAGER.....");
         FrameLayout fl = (FrameLayout) super.rootView.findViewById(R.id.base_pager_fl);
         TextView view = new TextView(super.mActivity);
         view.setText("NEWS");

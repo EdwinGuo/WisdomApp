@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
+import guo.edwin.wisdomapp.MainActivity;
 import guo.edwin.wisdomapp.R;
 
 /**
@@ -18,6 +21,8 @@ public class HomePager extends BasePager {
     }
 
     public void updateContents() {
+        System.out.println("LOADING HOME PAGER.....");
+        basePageib.setVisibility(View.INVISIBLE);
         FrameLayout fl = (FrameLayout) super.rootView.findViewById(R.id.base_pager_fl);
         TextView view = new TextView(super.mActivity);
         view.setText("HOME");
